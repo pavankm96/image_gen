@@ -5,3 +5,4 @@ diffusers
 langchain
 langchain-google-genai
 Pillow
+accelerate
