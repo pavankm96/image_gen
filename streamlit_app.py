@@ -12,16 +12,19 @@ import random
 # Set your Gemini API key
 os.environ["GOOGLE_API_KEY"] = "YOUR_GOOGLE_API_KEY"
 
-# Initialize Gemini LLM
+
 llm = ChatGoogleGenerativeAI(model="gemini-2.5-pro", temperature=0.7)
 
-# Prompt chains
-prompt_chain = ChatPromptTemplate.from_template("Describe a visually compelling scene based on the idea: {idea}")|llm
+# Prompt chain for image generation
+prompt_template = ChatPromptTemplate.from_template(
+    "Describe a visually compelling scene based on the idea: {idea}"
+)
+prompt_chain = prompt_template | llm
 
-
-recommendation_chain = ChatPromptTemplate.from_template(
-        "Based on the image description '{description}', suggest 3 related visual styles or ideas."
-    )|llm
+# Prompt chain for style recommendations
+recommendation_template = ChatPromptTemplate.from_template(
+    "Based on the image description '{description}', suggest 3 related visual styles or ideas."
+recommendation_chain = recommendation_template | llm
 
 # Load Stable Diffusion pipeline on CPU
 pipe = StableDiffusionPipeline.from_pretrained(
