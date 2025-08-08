@@ -16,12 +16,10 @@ os.environ["GOOGLE_API_KEY"] = "YOUR_GOOGLE_API_KEY"
 llm = ChatGoogleGenerativeAI(model="gemini-2.5-pro", temperature=0.7)
 
 # Prompt chains
-prompt_chain = 
-    prompt=ChatPromptTemplate.from_template("Describe a visually compelling scene based on the idea: {idea}")|llm
+prompt_chain = ChatPromptTemplate.from_template("Describe a visually compelling scene based on the idea: {idea}")|llm
 
 
-recommendation_chain =
-    prompt=ChatPromptTemplate.from_template(
+recommendation_chain = ChatPromptTemplate.from_template(
         "Based on the image description '{description}', suggest 3 related visual styles or ideas."
     )|llm
 
