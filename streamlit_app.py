@@ -23,7 +23,7 @@ prompt_chain = prompt_template | llm
 
 # Prompt chain for style recommendations
 recommendation_template = ChatPromptTemplate.from_template(
-    "Based on the image description '{description}', suggest 3 related visual styles or ideas."
+    "Based on the image description '{description}', suggest 3 related visual styles or ideas.")
 recommendation_chain = recommendation_template | llm
 
 # Load Stable Diffusion pipeline on CPU
