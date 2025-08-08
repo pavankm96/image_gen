@@ -4,7 +4,7 @@ from transformers import VisionEncoderDecoderModel, ViTImageProcessor, AutoToken
 from diffusers import StableDiffusionPipeline
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.prompts import ChatPromptTemplate
-from langchain.chains import LLMChain
+#from langchain.chains import LLMChain
 from PIL import Image
 import os
 import random
@@ -16,17 +16,14 @@ os.environ["GOOGLE_API_KEY"] = "YOUR_GOOGLE_API_KEY"
 llm = ChatGoogleGenerativeAI(model="gemini-2.5-pro", temperature=0.7)
 
 # Prompt chains
-prompt_chain = LLMChain(
-    llm=llm,
-    prompt=ChatPromptTemplate.from_template("Describe a visually compelling scene based on the idea: {idea}")
-)
+prompt_chain = 
+    prompt=ChatPromptTemplate.from_template("Describe a visually compelling scene based on the idea: {idea}")|llm
 
-recommendation_chain = LLMChain(
-    llm=llm,
+
+recommendation_chain =
     prompt=ChatPromptTemplate.from_template(
         "Based on the image description '{description}', suggest 3 related visual styles or ideas."
-    )
-)
+    )|llm
 
 # Load Stable Diffusion pipeline on CPU
 pipe = StableDiffusionPipeline.from_pretrained(
@@ -80,7 +77,7 @@ if st.button("Generate Image"):
             st.markdown(f"{i}. {caption}")
 
     with st.spinner("Generating visual style recommendations..."):
-        recommendations = recommendation_chain.run(captions[0])
+        recommendations = recommendation_chain.invoke(captions[0])
         recommended_styles = [style.strip() for style in recommendations.split("\n") if style.strip()]
         st.markdown("### 🎨 Recommended Visual Styles")
         for i, style in enumerate(recommended_styles, 1):
