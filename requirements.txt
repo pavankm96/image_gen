@@ -1,0 +1,7 @@
+streamlit
+torch
+transformers
+diffusers
+langchain
+langchain-google-genai
+Pillow
