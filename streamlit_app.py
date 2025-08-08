@@ -10,7 +10,7 @@ import os
 import random
 
 # Set your Gemini API key
-os.environ["GOOGLE_API_KEY"] = "YOUR_GOOGLE_API_KEY"
+os.environ["GOOGLE_API_KEY"] = "AIzaSyD4raMLljmAdWfBD_Ighzr8-hA-93bRtuw"
 
 
 llm = ChatGoogleGenerativeAI(model="gemini-2.5-pro", temperature=0.7)
